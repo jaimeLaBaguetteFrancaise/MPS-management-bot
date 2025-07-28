@@ -56,13 +56,13 @@ async def on_ready():
     print(f"Logged in as {bot.user}, ALL CREDITS GOES TO ADOUAM8383")
 
 
-@tree.command(name="dmall", description="Send a DM to every user in the server")
+@tree.command(name="dmall", description="Send a DM to every user in the team server")
 @app_commands.describe(message="The message to send via DM")
 async def dmall(interaction: discord.Interaction, message: str):
     await interaction.response.defer(ephemeral=True)
     guild = interaction.guild
     if guild is None:
-        await interaction.followup.send("This command can only be used in a server.", ephemeral=True)
+        await interaction.followup.send("This command can only be used in a team server.", ephemeral=True)
         return
 
     count, failed = 0, 0
@@ -83,7 +83,7 @@ async def poll(interaction: discord.Interaction):
     channel = interaction.channel
 
     if guild is None or channel is None:
-        await interaction.response.send_message("This command can only be used in a server channel.", ephemeral=True)
+        await interaction.response.send_message("This command can only be used in a team server channel.", ephemeral=True)
         return
 
     guild_data = await get_guild_settings(guild.id)
@@ -170,7 +170,7 @@ async def demote(interaction: discord.Interaction, user: discord.Member):
     b_role_id = guild_data.get("bteam_role_id")
 
     if not a_role_id or not b_role_id:
-        await interaction.response.send_message("A TEAM or B TEAM roles are not set for this guild.", ephemeral=True)
+        await interaction.response.send_message("A TEAM or B TEAM roles are not set for this team server.", ephemeral=True)
         return
 
     a_role = interaction.guild.get_role(a_role_id)
@@ -193,7 +193,7 @@ async def demote(interaction: discord.Interaction, user: discord.Member):
 async def setffrole(interaction: discord.Interaction, role: discord.Role):
     guild_id = interaction.guild.id
     await update_guild_setting(guild_id, "ff_role_id", role.id)
-    await interaction.response.send_message(f"Role {role.mention} set as Friendly Finder for this guild.", ephemeral=True)
+    await interaction.response.send_message(f"Role {role.mention} set as Friendly Finder for this team server.", ephemeral=True)
 
 
 @tree.command(name="promotetoff", description="Give the Friendly Finder role to a user")
@@ -269,7 +269,7 @@ async def roaster(interaction: discord.Interaction, team: str):
 
     guild = interaction.guild
     if not guild:
-        await interaction.response.send_message("This command must be used in a server.", ephemeral=True)
+        await interaction.response.send_message("This command must be used in a team server.", ephemeral=True)
         return
 
     settings = db['guild_settings'].find_one({"guild_id": str(guild.id)})
@@ -291,7 +291,7 @@ async def roaster(interaction: discord.Interaction, team: str):
 async def feedback(interaction: discord.Interaction, message: str):
     guild = interaction.guild
     if not guild:
-        await interaction.response.send_message("This command must be used in a server.", ephemeral=True)
+        await interaction.response.send_message("This command must be used in a team server.", ephemeral=True)
         return
 
     count = 0
