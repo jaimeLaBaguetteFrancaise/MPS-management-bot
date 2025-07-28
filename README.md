@@ -4,7 +4,7 @@
 
 ## What is the bot meant for?
 
-I used to manage MPS teams back then, and god know how inactive they become after a few month because theyfind theirselves at the bottom of the serverlist, so no1 never see any pings etc.. Also the things were too manual, not enough automatisation for me, if you want a quick, dynamic & active team you need to automate things instead of writing everything down manually.
+I used to manage MPS teams back then, and god know how inactive they became after a few month because they find theirselves at the bottom of the serverlist, so no1 never see any pings etc.. Also the things were too manual, not enough automatisation for me, if you want a quick, dynamic & active team you need to automate things instead of writing everything down manually.
 
 
 # if u need help setting up things, check WIKI section
